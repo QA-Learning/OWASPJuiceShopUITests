@@ -1,6 +1,0 @@
-com/example/tests/BaseTest.class
-com/example/actions/PlaceOrder.class
-com/example/tests/GuiceTestNGTest.class
-com/example/actions/Login.class
-com/example/config/SpringConfig.class
-com/example/tests/GuiceJunitTest.class
