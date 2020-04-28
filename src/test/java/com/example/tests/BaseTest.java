@@ -1,8 +1,8 @@
 package com.example.tests;
 
 import com.example.config.SpringConfig;
-import com.example.pages.Login;
-import com.example.pages.PlaceOrder;
+import com.example.actions.Login;
+import com.example.actions.PlaceOrder;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
