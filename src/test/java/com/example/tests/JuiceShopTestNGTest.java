@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
         SpringConfig.class,
 })
 @Ignore
-public class GuiceTestNGTest extends AbstractTestNGSpringContextTests {
+public class JuiceShopTestNGTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     WebDriver driver;

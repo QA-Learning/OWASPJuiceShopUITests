@@ -2,7 +2,7 @@
 <suite name="Parallel test suite" parallel="methods" thread-count="2">
     <test name="Regression 1">
         <classes>
-            <class name="com.example.tests.GuiceTestNGTest"/>
+            <class name="com.example.tests.JuiceShopTestNGTest"/>
         </classes>
     </test>
 </suite>
