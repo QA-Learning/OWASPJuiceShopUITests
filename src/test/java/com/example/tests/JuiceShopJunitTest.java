@@ -24,7 +24,9 @@ public class JuiceShopJunitTest extends BaseTest {
     @Test
     void shouldBeAbleToAddItemToBasket() {
         login().withValidCredentials(validUserName, password);
-        getPlaceOrder().addItemToBasket();
-        assertThat(getPlaceOrder().didSnackBarShowUp()).isTrue();
+        basket().addItem();
+        assertThat(basket().didSnackBarShowUp()).isTrue();
+        basket().removeItem();
+        assertThat(basket().isBasketEmpty()).isTrue();
     }
 }

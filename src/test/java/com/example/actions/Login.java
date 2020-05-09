@@ -2,21 +2,15 @@ package com.example.actions;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import static java.time.Duration.*;
-import static org.openqa.selenium.support.ui.ExpectedConditions.*;
-
 @Component
 @Scope("prototype")
-public class Login {
-
-    private WebDriverWait wait;
+public class Login extends Base {
 
     public Login(WebDriver driver) {
-        this.wait = new WebDriverWait(driver, ofSeconds(20));
+        super(driver);
     }
 
     private By email = By.id("email");
@@ -33,25 +27,21 @@ public class Login {
     }
 
     public boolean isLoggedIn() {
-        wait.until(elementToBeClickable(myAccount)).click();
-        return wait.until(elementToBeClickable(logoutButton)).isDisplayed();
+        findElement(myAccount).click();
+        return findElement(logoutButton).isDisplayed();
     }
 
     public String withInvalidCredentials(String emailId, String password) {
         loginWithEmailAndPassword(emailId, password);
-        return wait.until(elementToBeClickable(error)).getText();
+        return findElement(error).getText();
     }
 
     private void loginWithEmailAndPassword(String emailId, String password) {
-        clickLogin();
-        wait.until(presenceOfElementLocated(email)).sendKeys(emailId);
-        wait.until(presenceOfElementLocated(pass)).sendKeys(password);
-        wait.until(elementToBeClickable(loginButton)).click();
-    }
-
-    private void clickLogin() {
-        wait.until(elementToBeClickable(welcomeBanner)).click();
-        wait.until(elementToBeClickable(myAccount)).click();
-        wait.until(elementToBeClickable(login)).click();
+        findElement(welcomeBanner).click();
+        findElement(myAccount).click();
+        findElement(login).click();
+        findElement(email).sendKeys(emailId);
+        findElement(pass).sendKeys(password);
+        findElement(loginButton).click();
     }
 }

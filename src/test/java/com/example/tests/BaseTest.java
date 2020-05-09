@@ -1,8 +1,8 @@
 package com.example.tests;
 
-import com.example.config.SpringConfig;
 import com.example.actions.Login;
-import com.example.actions.PlaceOrder;
+import com.example.actions.Basket;
+import com.example.config.SpringConfig;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +11,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -56,7 +55,7 @@ public class BaseTest {
     }
 
     @NotNull
-    protected PlaceOrder getPlaceOrder() {
-        return new PlaceOrder(driver);
+    protected Basket basket() {
+        return new Basket(driver);
     }
 }
