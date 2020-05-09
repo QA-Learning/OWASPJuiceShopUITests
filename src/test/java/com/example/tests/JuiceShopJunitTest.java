@@ -22,7 +22,7 @@ public class JuiceShopJunitTest extends BaseTest {
     }
 
     @Test
-    void shouldBeAbleToAddItemToBasket() {
+    void shouldBeAbleToAddAndRemoveItemToBasket() {
         login().withValidCredentials(validUserName, password);
         basket().addItem();
         assertThat(basket().didSnackBarShowUp()).isTrue();
