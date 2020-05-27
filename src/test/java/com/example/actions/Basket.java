@@ -1,5 +1,6 @@
 package com.example.actions;
 
+import com.example.pageobjects.AbstractPageAndObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,44 +14,31 @@ import static org.awaitility.Awaitility.await;
 
 @Component
 @Scope("prototype")
-public class Basket extends Base {
+public class Basket extends AbstractPageAndObjects {
 
-    private WebDriver driver;
-
-    public Basket(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
-    }
-
-    private By addToBasket = By.xpath("(//button[contains(@aria-label,'Add to Basket')])[1]");
-    private By cart = By.xpath("//button[@aria-label='Show the shopping cart']");
-    private By snackBar = By.className("mat-simple-snackbar");
-    private By checkout = By.id("checkoutButton");
-    private By quantity = By.className("mat-icon-button");
-    private By removeButton = By.xpath("//mat-cell[contains(@class,'mat-column-remove')]/button");
 
     public void addItem() {
-        findElement(addToBasket).click();
+        findElement(basketPageObjects.addToBasket).click();
     }
 
     public void removeItem() {
-        findElement(snackBar);
-        findElement(cart).click();
-        findElement(quantity);
-        findElement(removeButton).click();
+        findElement(basketPageObjects.snackBar);
+        findElement(basketPageObjects.cart).click();
+        findElement(basketPageObjects.quantity);
+        findElement(basketPageObjects.removeButton).click();
     }
 
     public boolean didSnackBarShowUp() {
-        return findElement(snackBar).isDisplayed();
+        return findElement(basketPageObjects.snackBar).isDisplayed();
     }
 
     public boolean isBasketEmpty() {
         Predicate<WebElement> isCheckoutEnabled = WebElement::isEnabled;
-        WebElement checkoutButton = driver.findElement(checkout);
+        WebElement checkoutButton = basketPageObjects.checkout;
         await().atMost(ofSeconds(20))
-                .pollInterval(ofSeconds(1))
-                .ignoreExceptions()
-                .until(() -> !isCheckoutEnabled.test(checkoutButton));
+            .pollInterval(ofSeconds(1))
+            .ignoreExceptions()
+            .until(() -> !isCheckoutEnabled.test(checkoutButton));
         return !checkoutButton.isEnabled();
     }
 }

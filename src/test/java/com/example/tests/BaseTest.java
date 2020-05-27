@@ -1,24 +1,24 @@
 package com.example.tests;
 
-import com.example.actions.Login;
-import com.example.actions.Basket;
+import com.example.config.PageObjectBeanPostProcessor;
 import com.example.config.SpringConfig;
-import org.jetbrains.annotations.NotNull;
+import com.example.pageobjects.BeanPageObjects;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {
-        SpringConfig.class,
-})
+@ContextConfiguration(classes = { PageObjectBeanPostProcessor.class,
+    BeanPageObjects.class, SpringConfig.class,
+    AutowiredAnnotationBeanPostProcessor.class})
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class BaseTest {
@@ -47,15 +47,5 @@ public class BaseTest {
     public void tearDown() {
         driver.close();
         driver.quit();
-    }
-
-    @NotNull
-    protected Login login() {
-        return new Login(driver);
-    }
-
-    @NotNull
-    protected Basket basket() {
-        return new Basket(driver);
     }
 }
