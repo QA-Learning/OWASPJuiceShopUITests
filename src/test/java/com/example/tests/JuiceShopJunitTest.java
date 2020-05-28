@@ -7,7 +7,7 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Execution(ExecutionMode.CONCURRENT)
-public class JuiceShopJunitTest extends BaseTest {
+class JuiceShopJunitTest extends BaseTest {
 
     @Test
     void shouldBeAbleLoginWithValidCredentials() {

@@ -1,5 +1,6 @@
 package com.example.actions;
 
+import com.example.elements.BasketElements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,31 +23,24 @@ public class Basket extends Base {
         this.driver = driver;
     }
 
-    private By addToBasket = By.xpath("(//button[contains(@aria-label,'Add to Basket')])[1]");
-    private By cart = By.xpath("//button[@aria-label='Show the shopping cart']");
-    private By snackBar = By.className("mat-simple-snackbar");
-    private By checkout = By.id("checkoutButton");
-    private By quantity = By.className("mat-icon-button");
-    private By removeButton = By.xpath("//mat-cell[contains(@class,'mat-column-remove')]/button");
-
     public void addItem() {
-        findElement(addToBasket).click();
+        findElement(BasketElements.addToBasket).click();
     }
 
     public void removeItem() {
-        findElement(snackBar);
-        findElement(cart).click();
-        findElement(quantity);
-        findElement(removeButton).click();
+        findElement(BasketElements.snackBar);
+        findElement(BasketElements.cart).click();
+        findElement(BasketElements.quantity);
+        findElement(BasketElements.removeButton).click();
     }
 
     public boolean didSnackBarShowUp() {
-        return findElement(snackBar).isDisplayed();
+        return findElement(BasketElements.snackBar).isDisplayed();
     }
 
     public boolean isBasketEmpty() {
         Predicate<WebElement> isCheckoutEnabled = WebElement::isEnabled;
-        WebElement checkoutButton = driver.findElement(checkout);
+        WebElement checkoutButton = driver.findElement(BasketElements.checkout);
         await().atMost(ofSeconds(20))
                 .pollInterval(ofSeconds(1))
                 .ignoreExceptions()
