@@ -1,6 +1,5 @@
 package com.example.config;
 
-import com.example.pageobjects.BeanPageObjects;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +15,7 @@ import org.springframework.context.annotation.*;
 public class SpringConfig {
 
     @Bean
-    //@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public WebDriver getDriver() {
         String browser = System.getenv("BROWSER");
         if (browser == null) {
