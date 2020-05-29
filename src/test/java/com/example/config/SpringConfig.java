@@ -38,7 +38,7 @@ public class SpringConfig {
                     capabilities.setCapability("browserName", "chrome");
 
                     try {
-                        return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
+                        return new RemoteWebDriver(new URL("http://hub.com:4444/wd/hub"),
                             capabilities);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
