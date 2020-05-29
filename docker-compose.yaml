@@ -17,6 +17,8 @@ services:
       - hub
     environment:
       HUB_HOST: hub
+      NODE_MAX_INSTANCES: 5
+      NODE_MAX_SESSION: 5
 
   hub:
     image: selenium/hub:3.14.0-gallium
