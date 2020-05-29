@@ -2,6 +2,7 @@ package com.example.actions;
 
 import com.example.elements.LoginElements;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
