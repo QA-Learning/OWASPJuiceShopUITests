@@ -26,6 +26,11 @@ services:
       - "4444:4444"
 
 
+  juiceShop:
+    image: bkimminich/juice-shop
+    ports:
+      - "3000:3000"
+
   jenkins:
     #image: jenkins/jenkins
     build: .
@@ -34,6 +39,7 @@ services:
       - 50000:50000
     links:
       - hub:hub.com
+      - juiceShop:juiceShop.com
 
     # uncomment for docker in docker
     privileged: true
