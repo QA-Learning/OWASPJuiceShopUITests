@@ -31,9 +31,11 @@ services:
     ports:
       - 8080:8080
       - 50000:50000
+    volumes:
+      - .:/home
     links:
       - hub:hub.com
-      - juiceShop:juiceShop.com
+      - juiceShop:juice-shop.com
 
     # uncomment for docker in docker
     privileged: true
