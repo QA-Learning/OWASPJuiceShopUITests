@@ -1,7 +1,9 @@
 package com.example.tests;
 
+import com.example.actions.Home;
 import com.example.actions.Login;
 import com.example.actions.Basket;
+import com.example.actions.NewCustomer;
 import com.example.config.SpringConfig;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
@@ -28,7 +30,7 @@ public class BaseTest {
     protected WebDriver driver;
 
     @Value("${baseurl}")
-    private String baseurl;
+    protected String baseurl;
 
     @Value("${valid_username}")
     protected String validUserName;
@@ -39,11 +41,6 @@ public class BaseTest {
     @Value("${password}")
     protected String password;
 
-    @BeforeEach
-    public void setup() {
-        driver.get(baseurl);
-    }
-
     @AfterEach
     public void tearDown() {
         driver.close();
@@ -53,6 +50,16 @@ public class BaseTest {
     @NotNull
     protected Login login() {
         return new Login(driver);
+    }
+
+    @NotNull
+    protected NewCustomer newCustomer() {
+        return new NewCustomer(driver);
+    }
+
+    @NotNull
+    protected Home home() {
+        return new Home(driver);
     }
 
     @NotNull
