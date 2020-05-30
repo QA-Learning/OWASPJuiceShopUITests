@@ -1,18 +1,12 @@
 version: '2'
 services:
-  firefox:
-    image: selenium/node-firefox:3.14.0-gallium
-    volumes:
-      - /dev/shm:/dev/shm
-    depends_on:
-      - hub
-    environment:
-      HUB_HOST: hub
 
   chrome:
-    image: selenium/node-chrome:3.14.0-gallium
+    image: selenium/node-chrome-debug:latest
     volumes:
       - /dev/shm:/dev/shm
+    ports:
+      - 5901:5900
     depends_on:
       - hub
     environment:
